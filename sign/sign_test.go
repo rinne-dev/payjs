@@ -2,7 +2,7 @@ package sign
 
 import "testing"
 
-const TestSignData = `{"test2": "hehe", "test": 123}`
+const TestSignData = `{"test2": "hehe", "test": 123, "sign": "test"}`
 const TestSignResult = `B16319F0C3F2BBDA5CB8B4FFC9048A81`
 
 func TestSign(t *testing.T) {
