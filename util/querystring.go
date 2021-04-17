@@ -20,7 +20,7 @@ func QueryString(data string) (string, error) {
 
 	// 按照 Key 对结果排序
 	keys := make([]string, 0)
-	for k, _ := range result {
+	for k := range result {
 		keys = append(keys, k)
 	}
 	sort.Strings(keys)

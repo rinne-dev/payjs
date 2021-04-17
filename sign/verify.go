@@ -20,9 +20,10 @@ func Verify(data, key string) error {
 	}
 
 	// 校验签名
-	if signature.String() == localSignature {
-		return nil
-	} else {
+	if signature.String() != localSignature {
 		return errors.New("签名校验不通过")
 	}
+
+	// 校验通过
+	return nil
 }
