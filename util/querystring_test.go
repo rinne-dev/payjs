@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-const TestData = `{
+const TestQueryStringData = `{
 "null": null,
 "str": "str test",
 "int": 2,
@@ -15,14 +15,14 @@ const TestData = `{
 "obj": {"aaa": "a", "bbb": 123, "ccc": 1.23},
 "complex": {"test111": {"test222": {"hehe": "haha"}}, "test222": "haha"}
 }`
-const TestResult = `arr[0]=test&arr[1]=123&arr[2]=1.23&bool=1&bool2=0&complex[test111][test222][hehe]=haha&complex[test222]=haha&float=1.23&int=2&obj[aaa]=a&obj[bbb]=123&obj[ccc]=1.23&str=str test`
+const TestQueryStringResult = `arr[0]=test&arr[1]=123&arr[2]=1.23&bool=1&bool2=0&complex[test111][test222][hehe]=haha&complex[test222]=haha&float=1.23&int=2&obj[aaa]=a&obj[bbb]=123&obj[ccc]=1.23&str=str test`
 
 func TestQueryString(t *testing.T) {
-	res, err := QueryString(TestData)
+	res, err := QueryString(TestQueryStringData)
 	if err != nil {
 		t.Errorf("QueryString error: %s\n", err.Error())
 	}
-	if res != TestResult {
-		t.Errorf("QueryString expected be %s, but %s got\n", TestResult, res)
+	if res != TestQueryStringResult {
+		t.Errorf("QueryString expected be %s, but %s got\n", TestQueryStringResult, res)
 	}
 }
