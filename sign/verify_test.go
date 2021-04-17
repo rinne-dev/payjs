@@ -10,7 +10,7 @@ const TestVerifyData = `{"test2": "hehe", "test": 123, "sign": "B16319F0C3F2BBDA
 func TestVerify(t *testing.T) {
 	err := Verify(TestVerifyData, "test_key")
 	if err != nil {
-		t.Errorf("Verify expected passed\n")
+		t.Errorf("sign.Verify expected passed\n")
 	}
 }
 
@@ -18,7 +18,7 @@ func TestVerify2(t *testing.T) {
 	newJSON, _ := sjson.Set(TestSignData, "sign", "test")
 	err := Verify(newJSON, "test_key")
 	if err == nil {
-		t.Errorf("Verify expected not passed\n")
+		t.Errorf("sign.Verify expected not passed\n")
 	}
 }
 
@@ -26,6 +26,6 @@ func TestVerify3(t *testing.T) {
 	newJSON, _ := sjson.Delete(TestSignData, "sign")
 	err := Verify(newJSON, "test_key")
 	if err == nil {
-		t.Errorf("Verify expected not passed\n")
+		t.Errorf("sign.Verify expected not passed\n")
 	}
 }

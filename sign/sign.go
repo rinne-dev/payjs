@@ -26,7 +26,7 @@ func Sign(data, key string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	queryString += "&key="+key
+	queryString += "&key=" + key
 
 	// 计算签名
 	h := md5.New()

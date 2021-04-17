@@ -18,11 +18,8 @@ const TestQueryStringData = `{
 const TestQueryStringResult = `arr[0]=test&arr[1]=123&arr[2]=1.23&bool=1&bool2=0&complex[test111][test222][hehe]=haha&complex[test222]=haha&float=1.23&int=2&obj[aaa]=a&obj[bbb]=123&obj[ccc]=1.23&str=str test`
 
 func TestQueryString(t *testing.T) {
-	res, err := QueryString(TestQueryStringData)
-	if err != nil {
-		t.Errorf("QueryString error: %s\n", err.Error())
-	}
+	res, _ := QueryString(TestQueryStringData)
 	if res != TestQueryStringResult {
-		t.Errorf("QueryString expected be %s, but %s got\n", TestQueryStringResult, res)
+		t.Errorf("util.QueryString expected be %s, but %s got\n", TestQueryStringResult, res)
 	}
 }
