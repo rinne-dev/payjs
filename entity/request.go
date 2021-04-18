@@ -8,17 +8,19 @@ import (
 
 // Request 请求结构
 type Request struct {
-	MerchID string `json:"merch_id"` // 商户号
-	Sign    string `json:"sign"`     // 数据签名
-	Data    string `json:"-"`        // 数据
+	URL     string `json:"-"`     // API 地址
+	MerchID string `json:"mchid"` // 商户号
+	Sign    string `json:"sign"`  // 数据签名
+	Data    string `json:"-"`     // 数据
 }
 
 // NewRequest 创建请求
-func NewRequest(merchID, data string) *Request {
+func NewRequest(u, merchID, data string) *Request {
 	if !gjson.Parse(data).IsObject() {
 		data = "{}"
 	}
 	return &Request{
+		URL:     u,
 		MerchID: merchID,
 		Sign:    "",
 		Data:    data,
@@ -27,7 +29,7 @@ func NewRequest(merchID, data string) *Request {
 
 // Signature 计算签名
 func (r *Request) Signature(key string) error {
-	data, err := sjson.Set(r.Data, "merch_id", r.MerchID)
+	data, err := sjson.Set(r.Data, "mchid", r.MerchID)
 	if err != nil {
 		return err
 	}
@@ -41,7 +43,7 @@ func (r *Request) Signature(key string) error {
 
 // JSON 组合请求对象
 func (r *Request) JSON() (string, error) {
-	data, err := sjson.Set(r.Data, "merch_id", r.MerchID)
+	data, err := sjson.Set(r.Data, "mchid", r.MerchID)
 	if err != nil {
 		return "", err
 	}

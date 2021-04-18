@@ -20,7 +20,7 @@ func PostJSON(u, data string) (string, error) {
 
 	// 判断请求是否成功
 	if resp.StatusCode != http.StatusOK {
-		return "", errors.New("HTTP 请求错误："+strconv.Itoa(resp.StatusCode))
+		return "", errors.New("HTTP 请求错误：" + strconv.Itoa(resp.StatusCode))
 	}
 
 	// 读取响应内容
