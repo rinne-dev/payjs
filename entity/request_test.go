@@ -5,7 +5,7 @@ import (
 )
 
 func TestNewRequest(t *testing.T) {
-	req := NewRequest("merch_id", "")
+	req := NewRequest("url", "merch_id", "")
 	if req.MerchID != "merch_id" {
 		t.Errorf("entity.NewRequest test failed\n")
 	}
@@ -15,18 +15,18 @@ func TestNewRequest(t *testing.T) {
 }
 
 func TestRequest_Signature(t *testing.T) {
-	req := NewRequest("merch_id", `{"test": "haha"}`)
+	req := NewRequest("url", "merch_id", `{"test": "haha"}`)
 	_ = req.Signature("test_key")
-	if req.Sign != "1278F033181E84E6A7DECBBD767B7084" {
+	if req.Sign != "8C25F4D8CE652EE13397915BC2F8A825" {
 		t.Errorf("entity.Request_Signature test failed\n")
 	}
 }
 
 func TestRequest_JSON(t *testing.T) {
-	req := NewRequest("merch_id", `{"test": "haha"}`)
+	req := NewRequest("url", "merch_id", `{"test": "haha"}`)
 	_ = req.Signature("test_key")
 	d, _ := req.JSON()
-	if d != "{\"test\": \"haha\",\"merch_id\":\"merch_id\",\"sign\":\"1278F033181E84E6A7DECBBD767B7084\"}" {
+	if d != "{\"test\": \"haha\",\"mchid\":\"merch_id\",\"sign\":\"8C25F4D8CE652EE13397915BC2F8A825\"}" {
 		t.Errorf("entity.Request_JSON test failed\n")
 	}
 }
