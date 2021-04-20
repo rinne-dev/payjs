@@ -24,7 +24,7 @@ func TestRequest_JSON(t *testing.T) {
 
 func TestGetResponse(t *testing.T) {
 	resp := &entity.Response{
-		ReturnCode: 0,
+		ReturnCode: 1,
 		ReturnMsg:  "",
 		Sign:       "",
 		Data:       `{"payjs_order_id": "1"}`,
