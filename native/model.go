@@ -23,7 +23,7 @@ type Response struct {
 	OutTradeNo string `json:"out_trade_no"`   // Y 用户生成的订单号原样返回
 	TotalFee   int64  `json:"total_fee"`      // Y 金额。单位：分
 	CodeURL    string `json:"code_url"`       // Y 二维码内容（有效期2小时）
-	QRCode     string `json:"qrcode"`        // Y 二维码图片地址
+	QRCode     string `json:"qrcode"`         // Y 二维码图片地址
 }
 
 // JSON 生成请求 JSON 对象
@@ -34,6 +34,9 @@ func (r *Request) JSON() string {
 
 // GetResponse 取得响应
 func GetResponse(resp *entity.Response) *Response {
+	if resp.ReturnCode != 1 {
+		return nil
+	}
 	r := Response{}
 	_ = json.Unmarshal([]byte(resp.Data), &r)
 	return &r

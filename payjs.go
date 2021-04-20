@@ -62,6 +62,12 @@ func (p *PayJS) Native(req *native.Request) (*native.Response, error) {
 		return nil, err
 	}
 
+	// 解析响应
+	res := native.GetResponse(resp)
+	if res == nil {
+		return nil, errors.New(resp.ReturnMsg)
+	}
+
 	// 返回响应
 	return native.GetResponse(resp), nil
 }
